@@ -13,7 +13,10 @@ namespace ZXing.Mobile
 
 		[Obsolete("Use Xamarin.Essentials.Platform.Init instead")]
 		public static void Initialize(Android.App.Application app)
-			=> Xamarin.Essentials.Platform.Init(app);
+		{
+
+		}
+			//=> Xamarin.Essentials.Platform.Init(app);
 
 		[Obsolete("No longer necessary.")]
 		public static void Uninitialize(Android.App.Application app)
@@ -25,7 +28,9 @@ namespace ZXing.Mobile
 		bool torch = false;
 
 		Context GetContext(Context context)
-			=> Xamarin.Essentials.Platform.CurrentActivity ?? Xamarin.Essentials.Platform.AppContext;
+		{
+			return Microsoft.Maui.ApplicationModel.Platform.CurrentActivity ?? Microsoft.Maui.ApplicationModel.Platform.AppContext;
+        }		
 
 		internal void PlatformScanContinuously(MobileBarcodeScanningOptions options, Action<Result> scanHandler)
 			=> ScanContinuously(null, options, scanHandler);

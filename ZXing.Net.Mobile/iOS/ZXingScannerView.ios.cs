@@ -116,7 +116,8 @@ namespace ZXing.Mobile
 			};
 
 			// create a device input and attach it to the session
-			var devices = AVCaptureDevice.DevicesWithMediaType(AVMediaType.Video);
+			var devices = AVCaptureDevice.Devices?.Where(o => o.HasMediaType(AVMediaTypes.Video));
+
 			foreach (var device in devices)
 			{
 				captureDevice = device;
@@ -320,10 +321,10 @@ namespace ZXing.Mobile
 				}
 
 				if (captureDevice.FocusPointOfInterestSupported)
-					captureDevice.FocusPointOfInterest = new PointF(0.5f, 0.5f);
+					captureDevice.FocusPointOfInterest = new System.Drawing.PointF(0.5f, 0.5f);
 
 				if (captureDevice.ExposurePointOfInterestSupported)
-					captureDevice.ExposurePointOfInterest = new PointF(0.5f, 0.5f);
+					captureDevice.ExposurePointOfInterest = new System.Drawing.PointF(0.5f, 0.5f);
 
 				captureDevice.UnlockForConfiguration();
 			}
@@ -371,13 +372,10 @@ namespace ZXing.Mobile
 			}
 		}
 
-		public void Focus(PointF pointOfInterest)
+		public void Focus(System.Drawing.PointF pointOfInterest)
 		{
-			//Get the device
-			if (AVMediaType.Video == null)
-				return;
-
-			var device = AVCaptureDevice.DefaultDeviceWithMediaType(AVMediaType.Video);
+			//Get the device			
+			var device = AVCaptureDevice.GetDefaultDevice(AVMediaTypes.Video);
 
 			if (device == null)
 				return;
@@ -615,7 +613,7 @@ namespace ZXing.Mobile
 		{
 			try
 			{
-				var device = captureDevice ?? AVCaptureDevice.DefaultDeviceWithMediaType(AVMediaType.Video);
+				var device = captureDevice ?? AVCaptureDevice.GetDefaultDevice(AVMediaTypes.Video);
 				if (device != null && (device.HasTorch || device.HasFlash))
 				{
 					device.LockForConfiguration(out var err);
@@ -680,7 +678,7 @@ namespace ZXing.Mobile
 				if (hasTorch.HasValue)
 					return hasTorch.Value;
 
-				var device = captureDevice ?? AVCaptureDevice.DefaultDeviceWithMediaType(AVMediaType.Video);
+				var device = captureDevice ?? AVCaptureDevice.GetDefaultDevice(AVMediaTypes.Video);
 				hasTorch = device.HasFlash || device.HasTorch;
 				return hasTorch.Value;
 			}

@@ -33,8 +33,7 @@
     <IncludeProjectPriFile>false</IncludeProjectPriFile>
     <Platforms>x86;x64;arm64</Platforms>
     <ApplicationManifest>app.manifest</ApplicationManifest>
-    <EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
-    <RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
+    <EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>    
     <PublishProfile>win10-$(Platform).pubxml</PublishProfile>
     <UseMaui>True</UseMaui>
     <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>

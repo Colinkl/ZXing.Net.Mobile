@@ -6,7 +6,7 @@ using AndroidX.Fragment.App;
 
 namespace ZXing.Mobile
 {
-	public class ZXingScannerFragment : Fragment, IZXingScanner<View>, IScannerView
+	public class ZXingScannerFragment : Fragment, IZXingScanner<Android.Views.View>, IScannerView
 	{
 		public ZXingScannerFragment()
 		{
@@ -15,7 +15,7 @@ namespace ZXing.Mobile
 
 		FrameLayout frame;
 
-		public override View OnCreateView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle)
+		public override Android.Views.View OnCreateView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle)
 		{
 			frame = (FrameLayout)layoutInflater.Inflate(ZXing.Net.Mobile.Resource.Layout.zxingscannerfragmentlayout, viewGroup, false);
 
@@ -98,7 +98,7 @@ namespace ZXing.Mobile
 			return layoutParams;
 		}
 
-		public View CustomOverlayView { get; set; }
+		public Android.Views.View CustomOverlayView { get; set; }
 		public bool UseCustomOverlayView { get; set; }
 		public MobileBarcodeScanningOptions ScanningOptions { get; set; }
 		public string TopText { get; set; }

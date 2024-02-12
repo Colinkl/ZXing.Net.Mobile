@@ -6,7 +6,6 @@ using Android.App;
 using System.Threading.Tasks;
 using Android.Content.PM;
 using Android.Content;
-using Xamarin.Essentials;
 
 namespace ZXing.Net.Mobile.Android
 {

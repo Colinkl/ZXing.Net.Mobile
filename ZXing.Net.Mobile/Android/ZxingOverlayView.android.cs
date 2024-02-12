@@ -14,9 +14,10 @@ using Android.Widget;
 using Android.Graphics;
 using Android.Text;
 
+
 namespace ZXing.Mobile
 {
-	public class ZxingOverlayView : View
+	public class ZxingOverlayView : global::Android.Views.View
 	{
 		int[] SCANNER_ALPHA = { 0, 64, 128, 192, 255, 192, 128, 64 };
 		const long ANIMATION_DELAY = 80L;
@@ -24,12 +25,12 @@ namespace ZXing.Mobile
 		const int MAX_RESULT_POINTS = 20;
 		const int POINT_SIZE = 6;
 
-		Paint paint;
+		Android.Graphics.Paint paint;
 		Bitmap resultBitmap;
-		Color maskColor;
-		Color resultColor;
-		Color frameColor;
-		Color laserColor;
+        Android.Graphics.Color maskColor;
+		Android.Graphics.Color resultColor;
+        Android.Graphics.Color frameColor;
+        Android.Graphics.Color laserColor;
 
 		int scannerAlpha;
 		List<ZXing.ResultPoint> possibleResultPoints;
@@ -37,21 +38,21 @@ namespace ZXing.Mobile
 		public ZxingOverlayView(Context context) : base(context)
 		{
 			// Initialize these once for performance rather than calling them every time in onDraw().
-			paint = new Paint(PaintFlags.AntiAlias);
+			paint = new Android.Graphics.Paint(PaintFlags.AntiAlias);
 
 			//Resources resources = getResources();
-			maskColor = Color.Gray; // resources.getColor(R.color.viewfinder_mask);
-			resultColor = Color.Red; // resources.getColor(R.color.result_view);
-			frameColor = Color.Black; // resources.getColor(R.color.viewfinder_frame);
-			laserColor = Color.Red; //  resources.getColor(R.color.viewfinder_laser);
+			maskColor = Android.Graphics.Color.Gray; // resources.getColor(R.color.viewfinder_mask);
+			resultColor = Android.Graphics.Color.Red; // resources.getColor(R.color.result_view);
+			frameColor = Android.Graphics.Color.Black; // resources.getColor(R.color.viewfinder_frame);
+			laserColor = Android.Graphics.Color.Red; //  resources.getColor(R.color.viewfinder_laser);
 									//resultPointColor = Color.LightCoral; // resources.getColor(R.color.possible_result_points);
 			scannerAlpha = 0;
 			possibleResultPoints = new List<ZXing.ResultPoint>(5);
 
-			SetBackgroundColor(Color.Transparent);
+			SetBackgroundColor(Android.Graphics.Color.Transparent);
 		}
 
-		Rect GetFramingRect(Canvas canvas)
+		Android.Graphics.Rect GetFramingRect(Canvas canvas)
 		{
 			var width = canvas.Width * 15 / 16;
 
@@ -59,7 +60,7 @@ namespace ZXing.Mobile
 
 			var leftOffset = (canvas.Width - width) / 2;
 			var topOffset = (canvas.Height - height) / 2;
-			var framingRect = new Rect(leftOffset, topOffset, leftOffset + width, topOffset + height);
+			var framingRect = new Android.Graphics.Rect(leftOffset, topOffset, leftOffset + width, topOffset + height);
 
 			return framingRect;
 		}
@@ -89,12 +90,12 @@ namespace ZXing.Mobile
 
 
 			var textPaint = new TextPaint();
-			textPaint.Color = Color.White;
+			textPaint.Color = Android.Graphics.Color.White;
 			textPaint.TextSize = 16 * scale;
 
 			var topTextLayout = new StaticLayout(this.TopText, textPaint, canvas.Width, Android.Text.Layout.Alignment.AlignCenter, 1.0f, 0.0f, false);
 			canvas.Save();
-			var topBounds = new Rect();
+			var topBounds = new Android.Graphics.Rect();
 
 			textPaint.GetTextBounds(this.TopText, 0, this.TopText.Length, topBounds);
 			canvas.Translate(0, frame.Top / 2 - (topTextLayout.Height / 2));
@@ -107,7 +108,7 @@ namespace ZXing.Mobile
 
 			var botTextLayout = new StaticLayout(this.BottomText, textPaint, canvas.Width, Android.Text.Layout.Alignment.AlignCenter, 1.0f, 0.0f, false);
 			canvas.Save();
-			var botBounds = new Rect();
+			var botBounds = new Android.Graphics.Rect();
 
 			textPaint.GetTextBounds(this.BottomText, 0, this.BottomText.Length, botBounds);
 			canvas.Translate(0, (frame.Bottom + (canvas.Height - frame.Bottom) / 2) - (botTextLayout.Height / 2));
@@ -124,7 +125,7 @@ namespace ZXing.Mobile
 			if (resultBitmap != null)
 			{
 				paint.Alpha = CURRENT_POINT_OPACITY;
-				canvas.DrawBitmap(resultBitmap, null, new RectF(frame.Left, frame.Top, frame.Right, frame.Bottom), paint);
+				canvas.DrawBitmap(resultBitmap, null, new Android.Graphics.RectF(frame.Left, frame.Top, frame.Right, frame.Bottom), paint);
 			}
 			else
 			{
