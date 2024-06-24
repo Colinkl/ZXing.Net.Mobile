@@ -98,7 +98,7 @@ namespace ZXing.Mobile
 			// can cope with more data or volume
 			session = new AVCaptureSession()
 			{
-				SessionPreset = AVCaptureSession.Preset640x480
+				SessionPreset = PresetConverter.ToAVCaptureSessionPreset(ScanningOptions.CameraResolutionPreset)
 			};
 
 			// create a device input and attach it to the session
@@ -285,13 +285,13 @@ namespace ZXing.Mobile
 						captureDevice.WhiteBalanceMode = AVCaptureWhiteBalanceMode.AutoWhiteBalance;
 
 					if (UIDevice.CurrentDevice.CheckSystemVersion(7, 0) && captureDevice.AutoFocusRangeRestrictionSupported)
-						captureDevice.AutoFocusRangeRestriction = AVCaptureAutoFocusRangeRestriction.Near;
+						captureDevice.AutoFocusRangeRestriction = AVCaptureAutoFocusRangeRestriction.None;
 
 					if (captureDevice.FocusPointOfInterestSupported)
-						captureDevice.FocusPointOfInterest = new CGPoint(0.5f, 0.5f);
+						captureDevice.FocusPointOfInterest = new CGPoint(ScanningOptions.FocusPointOfInterest.X, ScanningOptions.FocusPointOfInterest.Y);
 
 					if (captureDevice.ExposurePointOfInterestSupported)
-						captureDevice.ExposurePointOfInterest = new CGPoint(0.5f, 0.5f);
+						captureDevice.ExposurePointOfInterest = new CGPoint(ScanningOptions.FocusPointOfInterest.X, ScanningOptions.FocusPointOfInterest.Y);
 
 					captureDevice.UnlockForConfiguration();
 				}
@@ -338,6 +338,10 @@ namespace ZXing.Mobile
 
 		public void Focus(CGPoint pointOfInterest)
 		{
+			//Get the device
+			if (AVMediaType.Video == null)
+				return;
+
 			var device = AVCaptureDevice.GetDefaultDevice(AVMediaTypes.Video);
 
 			if (device == null)
