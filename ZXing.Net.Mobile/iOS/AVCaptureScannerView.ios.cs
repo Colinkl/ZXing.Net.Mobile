@@ -104,7 +104,7 @@ namespace ZXing.Mobile
 			// create a device input and attach it to the session
 			//			var captureDevice = AVCaptureDevice.DefaultDeviceWithMediaType (AVMediaType.Video);
 			AVCaptureDevice captureDevice = null;
-			var devices = AVCaptureDevice.DevicesWithMediaType(AVMediaType.Video);
+			var devices = AVCaptureDevice.Devices?.Where(o => o.HasMediaType(AVMediaTypes.Video));// (AVMediaType.Video);
 			foreach (var device in devices)
 			{
 				captureDevice = device;
@@ -338,10 +338,6 @@ namespace ZXing.Mobile
 
 		public void Focus(CGPoint pointOfInterest)
 		{
-			//Get the device
-			if (AVMediaType.Video == null)
-				return;
-
 			var device = AVCaptureDevice.GetDefaultDevice(AVMediaTypes.Video);
 
 			if (device == null)

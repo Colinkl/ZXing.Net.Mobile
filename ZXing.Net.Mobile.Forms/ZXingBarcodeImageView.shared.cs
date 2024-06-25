@@ -1,5 +1,6 @@
-﻿using Xamarin.Forms;
-using ZXing.Common;
+﻿using ZXing.Common;
+using Microsoft.Maui.Controls;
+using Microsoft.Maui;
 
 namespace ZXing.Net.Mobile.Forms
 {

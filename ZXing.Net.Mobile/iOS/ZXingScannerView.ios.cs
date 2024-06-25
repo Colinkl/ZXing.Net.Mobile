@@ -119,7 +119,8 @@ namespace ZXing.Mobile
 			};
 
 			// create a device input and attach it to the session
-			var devices = AVCaptureDevice.DevicesWithMediaType(AVMediaType.Video);
+			var devices = AVCaptureDevice.Devices?.Where(o => o.HasMediaType(AVMediaTypes.Video));
+
 			foreach (var device in devices)
 			{
 				captureDevice = device;
@@ -268,7 +269,7 @@ namespace ZXing.Mobile
 			});
 
 			output.AlwaysDiscardsLateVideoFrames = true;
-			output.SetSampleBufferDelegateQueue(outputRecorder, queue);
+			output.SetSampleBufferDelegate(outputRecorder, queue);
 
 			PerformanceCounter.Stop(perf4, "PERF: SetupCamera Finished.  Took {0} ms.");
 
@@ -323,10 +324,10 @@ namespace ZXing.Mobile
 				}
 
 				if (captureDevice.FocusPointOfInterestSupported)
-					captureDevice.FocusPointOfInterest = new PointF(ScanningOptions.FocusPointOfInterest.X, ScanningOptions.FocusPointOfInterest.Y);
+					captureDevice.FocusPointOfInterest = new System.Drawing.PointF(ScanningOptions.FocusPointOfInterest.X, ScanningOptions.FocusPointOfInterest.Y);
 
 				if (captureDevice.ExposurePointOfInterestSupported)
-					captureDevice.ExposurePointOfInterest = new PointF(ScanningOptions.FocusPointOfInterest.X, ScanningOptions.FocusPointOfInterest.Y);
+					captureDevice.ExposurePointOfInterest = new System.Drawing.PointF(ScanningOptions.FocusPointOfInterest.X, ScanningOptions.FocusPointOfInterest.Y);
 
 				captureDevice.UnlockForConfiguration();
 			}
@@ -374,12 +375,8 @@ namespace ZXing.Mobile
 			}
 		}
 
-		public void Focus(PointF pointOfInterest)
+		public void Focus(System.Drawing.PointF pointOfInterest)
 		{
-			//Get the device
-			if (AVMediaType.Video == null)
-				return;
-
 			var device = AVCaptureDevice.GetDefaultDevice(AVMediaTypes.Video);
 
 			if (device == null)

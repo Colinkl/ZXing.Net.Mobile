@@ -74,7 +74,7 @@ namespace ZXing.Mobile.CameraAccess
 
 				var previewParameters = Camera.GetParameters();
 				var previewSize = previewParameters.PreviewSize;
-				var bitsPerPixel = ImageFormat.GetBitsPerPixel(previewParameters.PreviewFormat);
+				var bitsPerPixel = Android.Graphics.ImageFormat.GetBitsPerPixel(previewParameters.PreviewFormat);
 
 
 				var bufferSize = (previewSize.Width * previewSize.Height * bitsPerPixel) / 8;
@@ -358,7 +358,7 @@ namespace ZXing.Mobile.CameraAccess
 					// Add our focus area
 					cameraParams.FocusAreas = new List<Camera.Area>
 					{
-						new Camera.Area(new Rect(x, y, x + 20, y + 20), 1000)
+						new Camera.Area(new Android.Graphics.Rect(x, y, x + 20, y + 20), 1000)
 					};
 					Camera.SetParameters(cameraParams);
 				}

@@ -18,7 +18,7 @@ namespace ZXing.Mobile
 			=> weakAppController = new WeakReference<UIViewController>(delegateController);
 
 		public MobileBarcodeScanner()
-			=> weakAppController = new WeakReference<UIViewController>(Xamarin.Essentials.Platform.GetCurrentUIViewController());
+			=> weakAppController = new WeakReference<UIViewController>(Microsoft.Maui.ApplicationModel.Platform.GetCurrentUIViewController());
 
 		public Task<Result> Scan(bool useAVCaptureEngine)
 			=> Scan(new MobileBarcodeScanningOptions(), useAVCaptureEngine);

@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Windows.Input;
-using Xamarin.Forms;
 using ZXing.Mobile;
+using Microsoft.Maui.Controls;
+using Microsoft.Maui;
 
 namespace ZXing.Net.Mobile.Forms
 {

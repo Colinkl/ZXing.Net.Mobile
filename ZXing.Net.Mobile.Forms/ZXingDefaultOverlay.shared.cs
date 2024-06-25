@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows.Input;
-using Xamarin.Forms;
+using Microsoft.Maui.Graphics;
+using Microsoft.Maui.Controls;
+using Microsoft.Maui;
 
 namespace ZXing.Net.Mobile.Forms
 {
@@ -30,7 +32,7 @@ namespace ZXing.Net.Mobile.Forms
 			{
 				VerticalOptions = LayoutOptions.Fill,
 				HorizontalOptions = LayoutOptions.FillAndExpand,
-				BackgroundColor = Color.Black,
+				BackgroundColor = Colors.Black,
 				Opacity = 0.7,
 			}, 0, 0);
 
@@ -38,7 +40,7 @@ namespace ZXing.Net.Mobile.Forms
 			{
 				VerticalOptions = LayoutOptions.Fill,
 				HorizontalOptions = LayoutOptions.FillAndExpand,
-				BackgroundColor = Color.Black,
+				BackgroundColor = Colors.Black,
 				Opacity = 0.7,
 			}, 0, 2);
 
@@ -47,7 +49,7 @@ namespace ZXing.Net.Mobile.Forms
 				VerticalOptions = LayoutOptions.Center,
 				HorizontalOptions = LayoutOptions.FillAndExpand,
 				HeightRequest = 3,
-				BackgroundColor = Color.Red,
+				BackgroundColor = Colors.Red,
 				Opacity = 0.6,
 			}, 0, 1);
 
@@ -55,7 +57,7 @@ namespace ZXing.Net.Mobile.Forms
 			{
 				VerticalOptions = LayoutOptions.Center,
 				HorizontalOptions = LayoutOptions.Center,
-				TextColor = Color.White,
+				TextColor = Colors.White,
 				AutomationId = "zxingDefaultOverlay_TopTextLabel",
 			};
 			topText.SetBinding(Label.TextProperty, new Binding(nameof(TopText)));
@@ -65,7 +67,7 @@ namespace ZXing.Net.Mobile.Forms
 			{
 				VerticalOptions = LayoutOptions.Center,
 				HorizontalOptions = LayoutOptions.Center,
-				TextColor = Color.White,
+				TextColor = Colors.White,
 				AutomationId = "zxingDefaultOverlay_BottomTextLabel",
 			};
 			botText.SetBinding(Label.TextProperty, new Binding(nameof(BottomText)));
@@ -76,7 +78,7 @@ namespace ZXing.Net.Mobile.Forms
 				HorizontalOptions = LayoutOptions.End,
 				VerticalOptions = LayoutOptions.Start,
 				Text = "Flash",
-				TextColor = Color.White,
+				TextColor = Colors.White,
 				AutomationId = "zxingDefaultOverlay_FlashButton",
 			};
 			flash.SetBinding(Button.IsVisibleProperty, new Binding(nameof(ShowFlashButton)));

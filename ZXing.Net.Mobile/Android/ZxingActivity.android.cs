@@ -54,7 +54,7 @@ namespace ZXing.Mobile
 		public static void RequestResumeAnalysis()
 			=> ResumeAnalysisHandler?.Invoke();
 
-		public static View CustomOverlayView { get; set; }
+		public static global::Android.Views.View CustomOverlayView { get; set; }
 
 		public static bool UseCustomOverlayView { get; set; }
 
@@ -108,7 +108,10 @@ namespace ZXing.Mobile
 		}
 
 		public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Permission[] grantResults)
-			=> Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+		{
+
+		}
+			//=>  Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
 		void StartScanning()
 		{

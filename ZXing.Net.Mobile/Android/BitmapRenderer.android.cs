@@ -30,21 +30,21 @@ namespace ZXing.Mobile
 		/// Gets or sets the foreground color.
 		/// </summary>
 		/// <value>The foreground color.</value>
-		public Color Foreground { get; set; }
+		public Android.Graphics.Color Foreground { get; set; }
 
 		/// <summary>
 		/// Gets or sets the background color.
 		/// </summary>
 		/// <value>The background color.</value>
-		public Color Background { get; set; }
+		public Android.Graphics.Color Background { get; set; }
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="BitmapRenderer"/> class.
 		/// </summary>
 		public BitmapRenderer()
 		{
-			Foreground = Color.Black;
-			Background = Color.White;
+			Foreground = Android.Graphics.Color.Black;
+			Background = Android.Graphics.Color.White;
 		}
 
 		/// <summary>
