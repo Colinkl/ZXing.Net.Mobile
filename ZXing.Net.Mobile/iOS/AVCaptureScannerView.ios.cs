@@ -338,10 +338,6 @@ namespace ZXing.Mobile
 
 		public void Focus(CGPoint pointOfInterest)
 		{
-			//Get the device
-			if (AVMediaType.Video == null)
-				return;
-
 			var device = AVCaptureDevice.GetDefaultDevice(AVMediaTypes.Video);
 
 			if (device == null)
