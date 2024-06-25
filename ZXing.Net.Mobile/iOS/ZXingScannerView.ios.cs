@@ -204,7 +204,7 @@ namespace ZXing.Mobile
 
 			AddSubview(layerView);
 
-			ResizePreview(UIApplication.SharedApplication.StatusBarOrientation);
+			ResizePreview(UIInterfaceOrientation.LandscapeRight);
 
 			if (overlayView != null)
 			{
