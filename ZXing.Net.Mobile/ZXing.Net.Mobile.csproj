@@ -2,14 +2,14 @@
   <PropertyGroup>
     <AssemblyName>ZXingNetMobile</AssemblyName>
     <RootNamespace>ZXing.Net.Mobile</RootNamespace>
-    <PackageId>NotCat.ZXing.Net.Mobile</PackageId>
+    <PackageId>NotCat.ZXing.Net.Mobile.Ios</PackageId>
     <PackageIcon>icon.png</PackageIcon>
     <Summary>ZXing Barcode Scanning for your Xamarin.iOS, Xamarin.Android and Windows Universal apps!</Summary>
     <PackageTags>
     </PackageTags>
     <Title>Not Cat ZXing.Net.Mobile Barcode Scanner</Title>
     <Description>
-      net7.0
+      net8.0
     </Description>
     <Product>$(AssemblyName) ($(TargetFramework))</Product>
     <AssemblyVersion>3.0.0.0</AssemblyVersion>
@@ -30,13 +30,15 @@
     <Configurations>Debug;Release</Configurations>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <!--<TargetFrameworks>net8.0-ios;net8.0-android;net7.0-ios;net7.0-android</TargetFrameworks>-->
-    <TargetFrameworks>net7.0-ios;net7.0-android;</TargetFrameworks>
+    <TargetFrameworks>net8.0-ios;</TargetFrameworks>
     <UseMaui>True</UseMaui>
     <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
     <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">11.0</SupportedOSPlatformVersion>
     <OutputType>Library</OutputType>
     <ImplicitUsings>enable</ImplicitUsings>
     <SingleProject>true</SingleProject>
+    <NativeAot>true</NativeAot>
+
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)'=='Release' And '$(OS)' == 'Windows_NT' ">
     <!-- sourcelink: Declare that the Repository URL can be published to NuSpec -->
@@ -59,13 +61,6 @@
   <ItemGroup Condition=" $(TargetFramework.StartsWith('netstandard')) ">
     <Compile Include="**\*.netstandard.cs" />
     <Compile Include="**\*.netstandard.*.cs" />
-  </ItemGroup>
-  <ItemGroup Condition=" $(TargetFramework.StartsWith('uap10.0')) ">
-    <Compile Include="**\*.uwp.cs" />
-    <Compile Include="**\*.uwp.*.cs" />
-    <SDKReference Include="WindowsMobile, Version=10.0.16299.0">
-      <Name>Windows Mobile Extensions for the UWP</Name>
-    </SDKReference>
   </ItemGroup>
   <ItemGroup Condition=" $(TargetFramework.StartsWith('net8.0-android')) ">
     <Compile Include="**\*.android.cs" />
