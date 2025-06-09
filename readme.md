@@ -200,3 +200,6 @@ A copy of the Apache 2.0 license can be found here: https://github.com/zxing/zxi
 ### System.Drawing
 The System.Drawing classes included are from the mono source code which is property of Novell.
 Copyright notice is intact in source code files.
+
+
+to build: dotnet build -f net9.0-ios -r ios-arm64

@@ -30,10 +30,10 @@
     <Configurations>Debug;Release</Configurations>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <!--<TargetFrameworks>net8.0-ios;net8.0-android;net7.0-ios;net7.0-android</TargetFrameworks>-->
-    <TargetFrameworks>net8.0-ios;</TargetFrameworks>
+    <TargetFrameworks>net9.0-ios;</TargetFrameworks>
     <UseMaui>True</UseMaui>
     <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
-    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">11.0</SupportedOSPlatformVersion>
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">12.2</SupportedOSPlatformVersion>
     <OutputType>Library</OutputType>
     <ImplicitUsings>enable</ImplicitUsings>
     <SingleProject>true</SingleProject>
@@ -68,7 +68,7 @@
     <AndroidResource Include="Resources\layout\*.axml" />
     <PackageReference Include="FastAndroidCamera" Version="2.0.0" />
   </ItemGroup>
-  <ItemGroup Condition=" $(TargetFramework.StartsWith('net8.0-ios')) ">
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('net9.0-ios')) ">
     <Compile Include="**\*.ios.cs" />
     <Compile Include="**\*.ios.*.cs" />
   </ItemGroup>
@@ -84,5 +84,6 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="ZXing.Net" Version="0.16.6" />
+    <PackageReference Include="Microsoft.Maui.Controls" Version="9.0.14" />
   </ItemGroup>
 </Project>
